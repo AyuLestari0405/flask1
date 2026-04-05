@@ -63,7 +63,7 @@ def calculate_sleep_debt(hours_needed, hours_actual, days_per_month=30, months_p
 # Route untuk halaman utama
 @app.route("/sleep-debt")
 def index():
-    return render_template("sleep_debt/index.html")
+    return render_template("index.html")
 
 # Route untuk menghitung sleep debt
 @app.route("/sleep-debt/calculate", methods=["POST"])
@@ -93,9 +93,9 @@ def result():
         hours_actual = float(request.form.get("hours_actual", 5))
         
         calculation = calculate_sleep_debt(hours_needed, hours_actual)
-        return render_template("sleep_debt/result.html", data=calculation)
+        return render_template("index.html", data=calculation)
     
-    return render_template("sleep_debt/index.html")
+    return render_template("index.html")
 
 # Route untuk info/documentation
 @app.route("/sleep-debt/info")
@@ -111,7 +111,7 @@ def info():
         ],
         "research": "Penelitian menunjukkan bahwa 1 jam kurang tidur setiap malam setara dengan 45 hari dalam setahun berfungsi dengan kapasitas otak yang setara dengan orang mabuk (BAC 0.05%)."
     }
-    return render_template("sleep_debt/info.html", info=info_data)
+    return render_template("info.html", info=info_data)
 
 if __name__ == "__main__":
     # Jangan jalankan di sini, gunakan main Flask app
