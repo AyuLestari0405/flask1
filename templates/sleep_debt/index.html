@@ -12,7 +12,7 @@
             <h1>😴 Sleep Debt Interest Calculator</h1>
             <p class="subtitle">Hitung "Utang Tidur" Akumulatif Anda</p>
         </div>
-
+        
         <div class="content">
             <form id="sleepForm">
                 <div class="form-group">
@@ -95,12 +95,13 @@
     </div>
 
     <script>
+        // Handle form submission
         document.getElementById('sleepForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-
+            
             const hoursNeeded = parseFloat(document.getElementById('hours_needed').value);
             const hoursActual = parseFloat(document.getElementById('hours_actual').value);
-
+            
             try {
                 const response = await fetch('/sleep-debt/calculate', {
                     method: 'POST',
@@ -112,9 +113,9 @@
                         hours_actual: hoursActual
                     })
                 });
-
+                
                 const data = await response.json();
-
+                
                 if (data.success) {
                     displayResults(data);
                 } else {
@@ -125,7 +126,7 @@
                 alert('Terjadi kesalahan saat menghitung');
             }
         });
-
+        
         function displayResults(data) {
             document.getElementById('shock-factor').textContent = data.shock_factor;
             document.getElementById('deficit').textContent = data.sleep_deficit_per_night;
@@ -134,19 +135,24 @@
             document.getElementById('impaired-days').textContent = Math.round(data.impaired_cognition_days);
             document.getElementById('cognition-loss').textContent = data.cognition_loss_percentage;
             document.getElementById('hours-needed-display').textContent = data.hours_needed;
-
+            
+            // Analysis text
             let analysisText = `Dengan tidur ${data.hours_actual} jam per malam (${data.sleep_deficit_per_night} jam kurang dari yang direkomendasikan), `;
             analysisText += `Anda mengalami total utang tidur sebanyak ${data.total_sleep_debt_per_year_hours} jam per tahun. `;
             analysisText += `Ini setara dengan ${data.total_sleep_debt_per_year_days} hari penuh tidur yang terlewatkan. `;
             analysisText += `Dampak kognitifnya sangat serius: sekitar ${Math.round(data.impaired_cognition_days)} hari dalam setahun, `;
             analysisText += `kapasitas otak Anda menurun hingga ${data.cognition_loss_percentage}% dari normal.`;
-
+            
             document.getElementById('analysis-text').textContent = analysisText;
+            
+            // Show results
             document.getElementById('results').classList.remove('hidden');
             document.getElementById('sleepForm').style.display = 'none';
+            
+            // Scroll ke hasil
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
         }
-
+        
         function resetForm() {
             document.getElementById('sleepForm').reset();
             document.getElementById('results').classList.add('hidden');
