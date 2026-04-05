@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Mahasiswa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 Daftar Mahasiswa</h1>
+        
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <tr style="background-color: #007bff; color: white;">
+                <th style="padding: 10px; border: 1px solid #ddd;">No</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Nama</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Nilai</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Status</th>
+            </tr>
+            {% for mhs in mahasiswa %}
+            <tr style="background-color: {% if loop.index % 2 == 0 %}#f9f9f9{% endif %}">
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">{{ loop.index }}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{ mhs.nama }}</td>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: center;"><strong>{{ mhs.nilai }}</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">
+                    {% if mhs.nilai >= 90 %}
+                        <span style="background-color: #28a745; color: white; padding: 5px 10px; border-radius: 3px;">Lulus dengan Pujian ⭐⭐⭐</span>
+                    {% elif mhs.nilai >= 75 %}
+                        <span style="background-color: #ffc107; color: black; padding: 5px 10px; border-radius: 3px;">Lulus ⭐⭐</span>
+                    {% elif mhs.nilai >= 60 %}
+                        <span style="background-color: #ff9800; color: white; padding: 5px 10px; border-radius: 3px;">Lulus Bersyarat ⭐</span>
+                    {% else %}
+                        <span style="background-color: #dc3545; color: white; padding: 5px 10px; border-radius: 3px;">Tidak Lulus ❌</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <a href="/" style="margin-top: 20px; display: inline-block; padding: 10px 20px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 5px;">← Kembali ke Home</a>
+    </div>
+</body>
+</html>

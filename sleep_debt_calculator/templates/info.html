@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info - Sleep Debt Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='sleep_debt/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ℹ️ Informasi Sleep Debt Calculator</h1>
+        </div>
+
+        <div class="content">
+            <div class="info-box">
+                <h2>{{ info.title }}</h2>
+                <p>{{ info.description }}</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Cara Kerja Kalkulator:</h3>
+                <ol>
+                    {% for step in info.how_it_works %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+
+            <div class="info-box highlight">
+                <h3>🔬 Dasar Penelitian:</h3>
+                <p>{{ info.research }}</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📈 Fakta Menarik:</h3>
+                <ul>
+                    <li>Kurang tidur 1 jam/malam = 45 hari/tahun dalam kondisi "impaired cognition"</li>
+                    <li>Setiap malam tidur yang kurang 1 jam mengakumulasi utang tidur</li>
+                    <li>Utang tidur dapat mempengaruhi produktivitas dan kesehatan mental</li>
+                    <li>Repayment sleep debt membutuhkan waktu lebih lama daripada waktu yang hilang</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h3>💤 Rekomendasi Tidur:</h3>
+                <table class="info-table">
+                    <tr>
+                        <td><strong>Usia 18-64 tahun</strong></td>
+                        <td>7-9 jam per malam</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Usia 65+ tahun</strong></td>
+                        <td>7-8 jam per malam</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Remaja 13-18 tahun</strong></td>
+                        <td>8-10 jam per malam</td>
+                    </tr>
+                </table>
+            </div>
+
+            <a href="/sleep-debt" class="btn-back">← Kembali ke Kalkulator</a>
+        </div>
+
+        <footer>
+            <p>Data berdasarkan penelitian dari National Sleep Foundation dan CDC</p>
+        </footer>
+    </div>
+</body>
+</html>

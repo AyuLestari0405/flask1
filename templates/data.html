@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Data Pengguna</h1>
+        
+        <div style="background-color: #fff3cd; padding: 20px; border-radius: 5px; margin-top: 20px;">
+            <h2>Profil:</h2>
+            <p><strong>Nama:</strong> {{ user.name }}</p>
+            <p><strong>Umur:</strong> {{ user.age }} tahun</p>
+            <p><strong>Kota:</strong> {{ user.city }}</p>
+        </div>
+        
+        <a href="/" style="margin-top: 20px; display: inline-block; padding: 10px 20px; background-color: #17a2b8; color: white; text-decoration: none; border-radius: 5px;">← Kembali ke Home</a>
+    </div>
+</body>
+</html>
