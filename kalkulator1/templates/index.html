@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Net Profit Margin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+
+    <main class="panel">
+        <h1 class="title">Kalkulator Net Profit Margin</h1>
+        <p class="subtitle">Tema pastel ceria untuk hitung margin bisnis dengan cepat.</p>
+
+        <form method="POST">
+            <div>
+                <label for="laba_bersih">Laba Bersih</label>
+                <input id="laba_bersih" type="number" step="any" name="laba_bersih" required>
+            </div>
+
+            <div>
+                <label for="pendapatan">Pendapatan</label>
+                <input id="pendapatan" type="number" step="any" name="pendapatan" required>
+            </div>
+
+            <button type="submit">Hitung Sekarang</button>
+        </form>
+
+        {% if hasil is not none %}
+            <div class="result">
+                Net Profit Margin Anda: <strong>{{ hasil }}%</strong>
+            </div>
+        {% endif %}
+    </main>
+</body>
+</html>
